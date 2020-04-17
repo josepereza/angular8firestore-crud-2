@@ -1,0 +1,80 @@
+<div class="create-page">
+
+
+
+    <mat-card>
+        <mat-card-content>
+        <mat-card-title ><nav aria-label="breadcrumb">
+
+        <div class="breadcrumb-item active text-center" aria-current="page">Agregar Usuarios</div>
+
+    </nav></mat-card-title>
+
+
+
+    <div class="page-content">
+      <div class="row">
+
+        <div class="col col-md-8">
+
+          <form class="create-form" [formGroup]="AddForm" novalititre (ngSubmit)="onSubmit(AddForm.value)">
+
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput placeholder="Nom " class="form-control" formControlName="nom" autocomplete="off">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.nom">
+                <mat-error
+                  *ngIf="AddForm.get('nom').hasError(validation.type) && (AddForm.get('nom').dirty || AddForm.get('nom').touched)">
+                  {{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput placeholder="prenom" class="form-control" formControlName="prenom" autocomplete="off">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.prenom">
+                <mat-error
+                  *ngIf="AddForm.get('prenom').hasError(validation.type) && (AddForm.get('prenom').dirty || AddForm.get('prenom').touched)">
+                  {{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="input-style">
+                  <input matInput type="email" placeholder="Email" type="email" class="form-control" formControlName="email">
+                </mat-form-field>
+                <ng-container *ngFor="let validation of validation_messages.email">
+                  <mat-error
+                    *ngIf="AddForm.get('email').hasError(validation.type) && (AddForm.get('email').dirty || AddForm.get('email').touched)">
+                    {{validation.message}}</mat-error>
+                </ng-container>
+              </div>
+
+            <div class="row-md-12">
+              <div class="col-md-12 text-center">
+                <button mat-raised-button class="submit-button" color="primary" type="submit"
+                  [disabled]="!AddForm.valid">Agregar</button>
+
+              <button mat-raised-button class="button" color="warn" type="reset"
+                [routerLink]="['/users']" routerLinkActive="router-link-active">Annuler</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div  *ngIf="error">
+        <mat-error >
+        Erreur : Filiere existe déja !!
+      </mat-error>
+
+    </div>
+        </mat-card-content>
+    </mat-card>
+
+
+
+  </div>
